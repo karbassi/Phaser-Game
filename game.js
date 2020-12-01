@@ -76,9 +76,9 @@ class preload {
     game.load.setPreloadSprite(loadingBar);
     // load elements in title screen
     //start page img
-    game.load.image('title', 'assets/sprites/title-screen.png');
+    game.load.image('title', 'assets/sprites/title.png');
     game.load.image('enter', 'assets/sprites/press-enter-text.png');
-    game.load.image('instructions', 'assets/sprites/instructions.png');
+    game.load.image('instructions', 'assets/sprites/instruction.png');
     // environment--background
     game.load.image('background', 'assets/environment/b-background.png');
     game.load.image('middleground1', 'assets/environment/m-background.png');
@@ -136,7 +136,7 @@ class titleScreen {
     this.title.scale.setTo(0.8);
 
     // enter btn图标
-    this.pressEnter = game.add.image(game.width / 2, game.height - 10, 'enter');
+    this.pressEnter = game.add.image(game.width / 2, game.height , 'enter');
     this.pressEnter.anchor.setTo(0.5, 1);
     // this.pressEnter.scale.setTo(0.7);
     //add keydown event	检测ENTER按键
@@ -178,8 +178,8 @@ class titleScreen {
       this.title.destroy();
     } else {
       // 开始游戏
-	  this.game.state.start('PlayGame');
-	  //bgm1.stop();
+      this.game.state.start('PlayGame');
+      //bgm1.stop();
     }
   };
 }
@@ -582,8 +582,8 @@ class playGame {
   };
 
   killPlayer = () => {
-	playerDead = true;
-	hit.play();
+    playerDead = true;
+    hit.play();
   };
   killPlayerFall = () => {
     playerDead = true;
