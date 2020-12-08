@@ -80,7 +80,7 @@ class boot {
 class preload {
   constructor(game) {}
   preload = () => {
-    console.log(game.parent)
+   
     // 加载内容
     const loadingBar = this.game.add.sprite(
       game.width / 2,
@@ -239,7 +239,7 @@ class playGame {
     bgm = new Phaser.Sound(game, 'bgm', 1, true);
     bgm.play();
     // 添加分数文字
-     
+
     scoreText = this.add.text(
       180,
       10,
