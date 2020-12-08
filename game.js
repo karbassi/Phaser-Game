@@ -4,6 +4,7 @@ let parent = document.getElementById("window");
 // 背景图
 let background;
 let middleground1;
+let sun;
 let middleground;
 let foreground;
 //audio
@@ -80,7 +81,7 @@ class boot {
 class preload {
   constructor(game) {}
   preload = () => {
-   
+
     // 加载内容
     const loadingBar = this.game.add.sprite(
       game.width / 2,
@@ -97,6 +98,7 @@ class preload {
     // environment--background
     game.load.image('background', 'assets/environment/b-background.png');
     game.load.image('middleground1', 'assets/environment/m-background.png');
+    game.load.image('sun', 'assets/environment/sun.png');
     game.load.image('middleground', 'assets/environment/f-background.png');
     game.load.image('foreground', 'assets/environment/road.png');
     game.load.image('collision', 'assets/environment/collision.png');
@@ -128,6 +130,7 @@ class titleScreen {
   create = () => {
     // 布置场景
     background = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
+    sun = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'sun');
     middleground1 = game.add.tileSprite(
       0,
       0,
@@ -142,9 +145,6 @@ class titleScreen {
       gameHeight,
       'middleground'
     );
-    //bgm
-    // bgm = game.add.audio('bgm');
-    // bgm.play();
 
     //set title position	游戏图标
     this.title = game.add.image(game.width / 2, 70, 'title');
@@ -178,7 +178,6 @@ class titleScreen {
   // update方法带动了整个游戏的运行,这里是游戏开始界面的控制背景运动
   // 后面还有一个是游戏运行界面的
   update = () => {
-    // background.tilePosition.x -= 0.1;
     middleground.tilePosition.x -= 0.6;
     middleground1.tilePosition.x -= 0.2;
   };
@@ -216,6 +215,7 @@ class playGame {
 
     //environment	放置背景
     background = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'background');
+    sun = game.add.tileSprite(0, 0, gameWidth, gameHeight, 'sun');
     middleground1 = game.add.tileSprite(
       0,
       0,
@@ -246,7 +246,7 @@ class playGame {
       'Die: ' + dieTimes + ' Score: ' + score,
       {
         font: '15px 04b03regular',
-        fill: '#ffffff',
+        fill: '#00fff0',
         align: 'center',
       }
     );
@@ -499,8 +499,8 @@ class playGame {
 
     // 背景运动
     // 通过不同的移动速度，制造景深的效果
-    background.tilePosition.x -= 4 * gameSpeed;
-    middleground1.tilePosition.x -= 6 * gameSpeed;
+    background.tilePosition.x -= 1 * gameSpeed;
+    middleground1.tilePosition.x -= 4 * gameSpeed;
     middleground.tilePosition.x -= 8 * gameSpeed;
     foreground.tilePosition.x -= 10 * gameSpeed;
     obstacle.x -= 10 * gameSpeed;
