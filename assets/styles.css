@@ -1,3 +1,11 @@
+@font-face {
+  font-family: '04b03regular';
+  src: url('../assets/font/04b_03__-webfont.woff') format('woff2'),
+    url('../assets/font/04b_03__-webfont.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +23,36 @@
 }
 
 canvas {
+  position: absolute;
   image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-crisp-edges;
   image-rendering: pixelated;
+}
+body {
+  width: 100%;
+  height: 100%;
+}
+#window {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: black;
+  z-index: -100;
+}
+img {
+  overflow: hidden;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 950px;
+  height: auto;
+  position: relative;
+  top: 26%;
+  /* left: 15%; */
+  max-width: 99%;
+  max-height: 99%;
+
+  z-index: -1;
 }

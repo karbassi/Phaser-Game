@@ -1,5 +1,6 @@
 // 整个的游戏界面
 let game;
+let parent = document.getElementById("window");
 // 背景图
 let background;
 let middleground1;
@@ -12,6 +13,8 @@ let hit;
 let shoot;
 let bomb;
 let fall;
+//font
+let fontLoaded = false;
 // 游戏界面大小,不要乱调
 let gameWidth = 300;
 let gameHeight = 160;
@@ -38,7 +41,7 @@ let scoreFlag = true;
 let gameSpeed = 0.2;
 
 window.onload = function () {
-  game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
+  game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, parent);
   // 添加scene
   game.state.add('Boot', boot);
   game.state.add('Preload', preload);
@@ -47,6 +50,7 @@ window.onload = function () {
   // 开始初始化scene，很快，几乎看不到
   game.state.start('Boot');
 };
+
 class boot {
   constructor(game) {}
   preload = () => {
@@ -60,12 +64,23 @@ class boot {
     game.scale.setMinMax(300, 160, 600, 320);
     // 打开预加载scene
     this.game.state.start('Preload');
+    scoreText = this.add.text(
+      180,
+      10,
+      'load',
+      {
+        font: '1px 04b03regular',
+        fill: '#ffffff',
+        align: 'center',
+      }
+    );
   };
 }
 
 class preload {
   constructor(game) {}
   preload = () => {
+    console.log(game.parent)
     // 加载内容
     const loadingBar = this.game.add.sprite(
       game.width / 2,
@@ -88,6 +103,7 @@ class preload {
     game.load.image('obstacle', 'assets/environment/obstacle.png');
     // 子弹
     game.load.image('bullet', 'assets/sprites/missile-preview1.png');
+
     // 加载player纹理
     game.load.atlasJSONArray(
       'atlas',
@@ -162,9 +178,9 @@ class titleScreen {
   // update方法带动了整个游戏的运行,这里是游戏开始界面的控制背景运动
   // 后面还有一个是游戏运行界面的
   update = () => {
-    background.tilePosition.x -= 0.3;
-    middleground.tilePosition.x -= 0.3;
-    middleground1.tilePosition.x -= 0.3;
+    // background.tilePosition.x -= 0.1;
+    middleground.tilePosition.x -= 0.6;
+    middleground1.tilePosition.x -= 0.2;
   };
 
   startGame = () => {
@@ -223,13 +239,14 @@ class playGame {
     bgm = new Phaser.Sound(game, 'bgm', 1, true);
     bgm.play();
     // 添加分数文字
+     
     scoreText = this.add.text(
       180,
       10,
       'Die: ' + dieTimes + ' Score: ' + score,
       {
-        font: '15px Arial',
-        fill: '#ff0044',
+        font: '15px 04b03regular',
+        fill: '#ffffff',
         align: 'center',
       }
     );
